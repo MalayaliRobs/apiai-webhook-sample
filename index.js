@@ -43,7 +43,14 @@ restService.post('/hook', function (req, res) {
 			  "kik": [{
 			  }],
 			  "slack": {
-			  	"text": "*This will not be bold.* It will be surrounded gloriously with stars."
+			  	"attachments": [
+					        {
+					            "title": "Title",
+					            "pretext": "Pretext _supports_ mrkdwn",
+					            "text": "Testing *right now!*",
+					            "mrkdwn_in": ["text", "pretext"]
+					        }
+					    ]
 			  },
 			  "telegram": {
 			  }
