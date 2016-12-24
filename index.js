@@ -37,7 +37,7 @@ restService.post('/hook', function (req, res) {
             speech: speech,
             displayText: speech,
             source: 'apiai-webhook-sample',
-            data :'slack': {'testing slack messages!'}
+            slack: 'test_message' 
         });
     } catch (err) {
         console.error("Can't process request", err);
