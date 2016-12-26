@@ -1,0 +1,19 @@
+select * from ajcestudents where student_name ilike'thomas mathe%';
+
+CREATE TABLE public.ajcestudents
+(
+    student_name text COLLATE pg_catalog."default",
+    admission_no text COLLATE pg_catalog."default",
+    parent_name text COLLATE pg_catalog."default",
+    mother_name text COLLATE pg_catalog."default",
+    course text COLLATE pg_catalog."default",
+    branch text COLLATE pg_catalog."default",
+    batch text COLLATE pg_catalog."default"
+)
+WITH (
+    OIDS = FALSE
+)
+TABLESPACE pg_default;
+
+ALTER TABLE public.ajcestudents
+    OWNER to jiadkawgponomn;

@@ -2,6 +2,7 @@
 
 const express = require('express');
 const bodyParser = require('body-parser');
+var pg = require('pg');
 
 
 const restService = express();
