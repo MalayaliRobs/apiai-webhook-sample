@@ -25,10 +25,11 @@ restService.post('/hook', function (req, res) {
 
                 if (requestBody.result.action=='search_name')
                 {
+                	var name=requestBody.result.parameters.given-name;
 
                 	if (requestBody.result.fulfillment) 
                 	{
-                    speech += requestBody.result.fulfillment.speech;
+                    speech += name;
                     speech += ' ';
                		}
 
