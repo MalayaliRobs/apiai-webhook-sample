@@ -10,6 +10,8 @@ var connString = 'postgres://jiadkawgponomn:803cec759efcbd383bbd2ecd4d02de800ba0
 const restService = express();
 restService.use(bodyParser.json());
 
+var result1 = [];
+
 restService.post('/hook', function (req, res) {
 
     console.log('hook request');
@@ -33,7 +35,8 @@ restService.post('/hook', function (req, res) {
 						done();
 						if(err) return response.send(err);
 						console.log(result.rows[0].student_name);
-					    
+					    result1.push(result.rows[0].student_name);
+        				console.log(result1[0]);
 					    
 						
 						});
@@ -42,7 +45,7 @@ restService.post('/hook', function (req, res) {
 
                 	if (requestBody.result.fulfillment) 
                 	{
-                    speech +=name;
+                    speech +=result1[0];
                     speech += ' ';
                		}
 
