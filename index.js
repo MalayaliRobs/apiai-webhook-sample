@@ -10,7 +10,7 @@ const restService = express();
 restService.use(bodyParser.json());
 
 restService.post('/hook', function (req, res) {
-DATABASE_URL='postgres://jiadkawgponomn:803cec759efcbd383bbd2ecd4d02de800ba073a90079b23f5b247a878afe85c1@ec2-54-221-212-48.compute-1.amazonaws.com:5432/dei1e9mld85lk9';
+conString='postgres://jiadkawgponomn:803cec759efcbd383bbd2ecd4d02de800ba073a90079b23f5b247a878afe85c1@ec2-54-221-212-48.compute-1.amazonaws.com:5432/dei1e9mld85lk9';
     console.log('hook request');
 
     try {
@@ -26,7 +26,7 @@ DATABASE_URL='postgres://jiadkawgponomn:803cec759efcbd383bbd2ecd4d02de800ba073a9
                 {
                 	var name=requestBody.result.parameters['given-name'];
 
-					 pg.connect(process.env.DATABASE_URL, function(err, client, done) {
+					 pg.connect(conString, function(err, client, done) {
 					    if (err) {
 					      return console.error('error fetching client from pool', err);
 					    }
