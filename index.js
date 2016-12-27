@@ -27,14 +27,12 @@ restService.post('/hook', function (req, res) {
                 	var name=requestBody.result.parameters['given-name'];
 
 					  pg.connect(process.env.DATABASE_URL, function(err, client, done) {
-					    client.query('SELECT * FROM ajcestudents', function(err, result) {
-					      if (err)
-					       {speech='error'; 
-					       	console.error(err); response.send("Error " + err); }
-					      else
-					       { speech='worked'; }  
-					    done();
-					    });
+					    if(err)
+					    {
+					    	speech='error';
+					    }
+					    else
+					    	speech='worked';
 					  });
 
                 	if (requestBody.result.fulfillment) 
