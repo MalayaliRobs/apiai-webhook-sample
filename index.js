@@ -4,7 +4,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 
 var pg = require('pg');
-pg.defaults.ssl = false;
+pg.defaults.ssl = true;
 var conString = 'postgres://jiadkawgponomn:803cec759efcbd383bbd2ecd4d02de800ba073a90079b23f5b247a878afe85c1@ec2-54-221-212-48.compute-1.amazonaws.com:5432/dei1e9mld85lk9';
 
 const restService = express();
@@ -30,12 +30,10 @@ restService.post('/hook', function (req, res) {
                 	pg.connect(conString, function(err, client, done) {
 				    
 				    console.log("connected to database");
-				    client.query('SELECT * FROM ajcestudents', function(err, result) {
+				    client.query("select * from ajcestudents where student_name = 'Thomas Mathew'", function(err, result) {
 				      done();
-				      if (err) {
-				        return console.error('error running query', err);
-				      }
-				      name=(result.rows[0].student_name);
+				      
+				      name=result.rows[0].student_name;
 				    });
 				  });
 					 
