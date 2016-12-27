@@ -37,7 +37,7 @@ restService.post('/hook', function (req, res) {
 				      if (err) {
 				        return console.error('error running query', err);
 				      }
-				      console.log(result.rows[0].student_name);
+				      name=(result.rows[0].student_name);
 				    });
 				  });
 					 
