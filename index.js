@@ -5,7 +5,7 @@ const bodyParser = require('body-parser');
 
 var pg = require('pg');
 pg.defaults.ssl = true;
-var conString = 'postgres://jiadkawgponomn:803cec759efcbd383bbd2ecd4d02de800ba073a90079b23f5b247a878afe85c1@ec2-54-221-212-48.compute-1.amazonaws.com:5432/dei1e9mld85lk9';
+var connString = 'postgres://jiadkawgponomn:803cec759efcbd383bbd2ecd4d02de800ba073a90079b23f5b247a878afe85c1@ec2-54-221-212-48.compute-1.amazonaws.com:5432/dei1e9mld85lk9';
 
 const restService = express();
 restService.use(bodyParser.json());
@@ -27,15 +27,14 @@ restService.post('/hook', function (req, res) {
                 {
                 	var name=requestBody.result.parameters['given-name'];
 
-                	pg.connect(conString, function(err, client, done) {
-				    
-				    console.log("connected to database");
-				    client.query("select * from ajcestudents where student_name = 'Thomas Mathew'", function(err, result) {
-				      done();
-				      
-				      name=result.rows[0].student_name;
-				    });
-				  });
+                	pg.connect(connString, function(err, client, done) {
+					if(err) response.send("Could not connect to DB: " + err);
+					client.query('SELECT * FROM ajcestudents', function(err, result) {
+						done();
+						if(err) return response.send(err);
+						console.log(result.rows);
+						});
+					});
 					 
 
                 	if (requestBody.result.fulfillment) 
