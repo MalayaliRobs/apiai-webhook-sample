@@ -11,6 +11,8 @@ const restService = express();
 restService.use(bodyParser.json());
 
 var result1 = [];
+var name1;
+
 
 restService.post('/hook', function (req, res) {
 
@@ -37,6 +39,7 @@ restService.post('/hook', function (req, res) {
 						if(err) return response.send(err);
 						console.log(result.rows[0].student_name);
 					    result1.push(result.rows[0].student_name);
+					    name1=result1.pop();
         				console.log(result1[0]);
 					    name='';
 						
@@ -46,7 +49,7 @@ restService.post('/hook', function (req, res) {
 
                 	if (requestBody.result.fulfillment) 
                 	{
-                    speech +=result1[0];
+                    speech +=name1;
                     result1 = [];
                     speech += ' ';
                		}
