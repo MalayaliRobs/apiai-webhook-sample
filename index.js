@@ -31,7 +31,7 @@ restService.post('/hook', function (req, res) {
 
                 	pg.connect(connString, function(err, client, done) {
 					if(err) response.send("Could not connect to DB: " + err);
-					var search="SELECT * FROM ajcestudents WHERE student_name ilike 'thomas' ";
+					var search="SELECT * FROM ajcestudents";
 					client.query(search, function(err, result) {
 						done();
 						if(err) return response.send(err);
