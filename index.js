@@ -40,6 +40,7 @@ restService.post('/hook', function (req, res) {
 						console.log(result.rows[0].student_name);
 					    result1.push(result.rows[0].student_name);
 					    name1=result1.pop();
+					    result1.pop();
         				console.log(result1[0]);
 					    name='';
 						
