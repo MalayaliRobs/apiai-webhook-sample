@@ -26,16 +26,15 @@ restService.post('/hook', function (req, res) {
                 {
                 	var name=requestBody.result.parameters['given-name'];
 
-					  pg.connect(process.env.DATABASE_URL, function(err, client) {
-					  if (err) throw err;
-					  console.log('Connected to postgres! Getting schemas...');
-					  client
-					    .query('SELECT * FROM ajcestudents;')
-					    .on('row', function(row) {
-					      console.log(JSON.stringify(row));
-					      name=row[0];
+					  pg.connect(process.env.DATABASE_URL, function(err, client, done) {
+					    client.query('SELECT * FROM ajcestudents', function(err, result) {
+					      done();
+					      if (err)
+					       { console.error(err); response.send("Error " + err); }
+					      else
+					       {  name=result[0].admission_no; }  
 					    });
-					});
+					  });
 
                 	if (requestBody.result.fulfillment) 
                 	{
