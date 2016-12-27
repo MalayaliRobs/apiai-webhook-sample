@@ -2,8 +2,9 @@
 
 const express = require('express');
 const bodyParser = require('body-parser');
+
 var pg = require('pg');
-const connectionString = process.env.DATABASE_URL || 'postgres://jiadkawgponomn:803cec759efcbd383bbd2ecd4d02de800ba073a90079b23f5b247a878afe85c1@ec2-54-221-212-48.compute-1.amazonaws.com:5432/dei1e9mld85lk9';
+pg.defaults.ssl = true;
 
 const restService = express();
 restService.use(bodyParser.json());
@@ -24,6 +25,11 @@ restService.post('/hook', function (req, res) {
                 if (requestBody.result.action=='search_name')
                 {
                 	var name=requestBody.result.parameters['given-name'];
+
+					  pg.connect(process.env.DATABASE_URL, function(err, client) {
+					  if (err) throw err;
+					  console.log('Connected to postgres! Getting schemas...');
+					});
 
                 	if (requestBody.result.fulfillment) 
                 	{
