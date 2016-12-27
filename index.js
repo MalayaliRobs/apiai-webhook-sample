@@ -3,15 +3,15 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 
-var pg = require('pg');
+const pg = require('pg');
 pg.defaults.ssl = true;
-var connString = 'postgres://jiadkawgponomn:803cec759efcbd383bbd2ecd4d02de800ba073a90079b23f5b247a878afe85c1@ec2-54-221-212-48.compute-1.amazonaws.com:5432/dei1e9mld85lk9';
+const connString = 'postgres://jiadkawgponomn:803cec759efcbd383bbd2ecd4d02de800ba073a90079b23f5b247a878afe85c1@ec2-54-221-212-48.compute-1.amazonaws.com:5432/dei1e9mld85lk9';
 
 const restService = express();
 restService.use(bodyParser.json());
 
-var result1 = [];
-var name1='';
+const result1 = [];
+const name1='';
 
 
 restService.post('/hook', function (req, res) {
