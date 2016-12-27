@@ -31,7 +31,7 @@ restService.post('/hook', function (req, res) {
 					      if (err)
 					       { console.error(err); response.send("Error " + err); }
 					      else
-					       {  name=result[0].admission_no; }  
+					       {  name=result[0].parent_name; }  
 					    done();
 					    });
 					  });
