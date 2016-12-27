@@ -24,10 +24,6 @@ restService.post('/hook', function (req, res) {
                 if (requestBody.result.action=='search_name')
                 {
                 	
-				    if (err) {
-				        return console.error('error running query', err);
-				      }
-
                 	if (requestBody.result.fulfillment) 
                 	{
                     speech +=name;
@@ -38,8 +34,7 @@ restService.post('/hook', function (req, res) {
                 	{
                     speech += 'action: ' + requestBody.result.action;
                 	}
-                	done();
-                  
+                	
                 }
 
                 
