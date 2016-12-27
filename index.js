@@ -26,14 +26,17 @@ restService.post('/hook', function (req, res) {
                 {
                 	var name=requestBody.result.parameters['given-name'];
 
-					  pg.connect(process.env.DATABASE_URL, function(err, client, done) {
-					    if(err)
-					    {
-					    	speech='error';
-					    }
-					    else
-					    	speech='worked';
-					  });
+					 pg.connect(process.env.DATABASE_URL, function(err, client) {
+					  if (err) throw err;
+					  speech='connected';
+					  console.log('Connected to postgres! Getting schemas...');
+
+					  client
+					    .query('SELECT table_schema,table_name FROM information_schema.tables;')
+					    .on('row', function(row) {
+					      console.log(JSON.stringify(row));
+					    });
+					});
 
                 	if (requestBody.result.fulfillment) 
                 	{
