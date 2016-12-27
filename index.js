@@ -26,10 +26,15 @@ restService.post('/hook', function (req, res) {
                 if (requestBody.result.action=='search_name')
                 {
                 	var name=requestBody.result.parameters['given-name'];
+                	client.query('SELECT * FROM ajcestudents', function(err, result) 
+                 {
+				    if (err) {
+				        return console.error('error running query', err);
+				      }
 
                 	if (requestBody.result.fulfillment) 
                 	{
-                    speech +='testing '+name;
+                    speech +=name;
                     speech += ' ';
                		}
 
@@ -37,7 +42,8 @@ restService.post('/hook', function (req, res) {
                 	{
                     speech += 'action: ' + requestBody.result.action;
                 	}
-
+                	done();
+                  });
                 }
 
                 
