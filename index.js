@@ -28,11 +28,11 @@ restService.post('/hook', function (req, res) {
 
 					  pg.connect(process.env.DATABASE_URL, function(err, client, done) {
 					    client.query('SELECT * FROM ajcestudents', function(err, result) {
-					      done();
 					      if (err)
 					       { console.error(err); response.send("Error " + err); }
 					      else
 					       {  name=result[0].admission_no; }  
+					    done();
 					    });
 					  });
 
