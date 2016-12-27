@@ -32,7 +32,7 @@ restService.post('/hook', function (req, res) {
 					client.query('SELECT * FROM ajcestudents', function(err, result) {
 						done();
 						if(err) return response.send(err);
-						console.log(result.rows);
+						console.log(result.rows[0]);
 						});
 					});
 					 
