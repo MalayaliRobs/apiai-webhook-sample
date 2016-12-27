@@ -35,20 +35,20 @@ restService.post('/hook', function (req, res) {
 					if(err) response.send("Could not connect to DB: " + err);
 					var search=` SELECT * FROM ajcestudents where student_name ilike '${name}%'`;
 					client.query(search, function(err, result) {
-						
+					   done();
 						if(err) return response.send(err);
 						console.log(result.rows[0].student_name);
 					    var test=JSON.stringify(result.rows, null, "    ");
 					    var testp=JSON.parse(test);
-					    var name1=testp[0].student_name;
+					     name1=testp[0].student_name;
 					    /*result1.push(result.rows[0].student_name);
 					    name1=result1.pop();
         				console.log(result1[0]);
 					    name='';*/
-					    done();
+					 
 						
 						});
-					});
+					  });
 					 
 
                 	if (requestBody.result.fulfillment) 
