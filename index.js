@@ -38,7 +38,7 @@ restService.post('/hook', function (req, res) {
 						console.log(result.rows[0].student_name);
 					    result1.push(result.rows[0].student_name);
         				console.log(result1[0]);
-					    
+					    name='';
 						
 						});
 					});
