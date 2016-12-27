@@ -27,7 +27,7 @@ restService.post('/hook', function (req, res) {
                 {
                 	var name=requestBody.result.parameters['given-name'];
 
-                	pg.connect(conString, function(err, client, done) {
+                	pg.connect(process.env.conString, function(err, client, done) {
 				    if (err) {
 				      return console.error('error fetching client from pool', err);
 				    }
