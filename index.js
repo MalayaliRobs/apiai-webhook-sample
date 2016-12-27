@@ -37,13 +37,14 @@ restService.post('/hook', function (req, res) {
 					client.query(search, function(err, result) {
 						
 						if(err) return response.send(err);
-						var test=JSON.stringify(result.rows, null, "    ");
-
-						//console.log(result.rows[0].student_name);
-					    //result1.push(result.rows[0].student_name);
-					    //name1=result1.pop();
-        				//console.log(result1[0]);
-					    name='';
+						console.log(result.rows[0].student_name);
+					    var test=JSON.stringify(result.rows, null, "    ");
+					    var testp=JSON.parse(test);
+					    var name1=testp[0].student_name;
+					    /*result1.push(result.rows[0].student_name);
+					    name1=result1.pop();
+        				console.log(result1[0]);
+					    name='';*/
 					    done();
 						
 						});
@@ -52,7 +53,7 @@ restService.post('/hook', function (req, res) {
 
                 	if (requestBody.result.fulfillment) 
                 	{
-                    speech +=test;
+                    speech +=name1;
                     speech += ' ';
                		}
 
