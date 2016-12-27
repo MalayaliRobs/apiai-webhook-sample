@@ -3,9 +3,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 var pg = require('pg');
-const connectionString = process.env.DATABASE_URL || 'postgres://jiadkawgponomn:803cec759efcbd383bbd2ecd4d02de800ba073a90079b23f5b247a878afe85c1@ec2-54-221-212-48.compute-1.amazonaws.com:5432/dei1e9mld85lk9';
-const client = new pg.Client(connectionString);
-client.connect();
+
 
 const restService = express();
 restService.use(bodyParser.json());
@@ -25,9 +23,7 @@ restService.post('/hook', function (req, res) {
 
                 if (requestBody.result.action=='search_name')
                 {
-                	var name=requestBody.result.parameters['given-name'];
-                	client.query('SELECT * FROM ajcestudents', function(err, result) 
-                 {
+                	
 				    if (err) {
 				        return console.error('error running query', err);
 				      }
@@ -43,7 +39,7 @@ restService.post('/hook', function (req, res) {
                     speech += 'action: ' + requestBody.result.action;
                 	}
                 	done();
-                  });
+                  
                 }
 
                 
