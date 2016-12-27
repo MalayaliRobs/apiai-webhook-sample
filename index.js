@@ -50,7 +50,6 @@ restService.post('/hook', function (req, res) {
                 	if (requestBody.result.fulfillment) 
                 	{
                     speech +=name1;
-                    result1 = [];
                     speech += ' ';
                		}
 
