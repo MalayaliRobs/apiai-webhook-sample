@@ -34,14 +34,14 @@ restService.post('/hook', function (req, res) {
 						if(err) return response.send(err);
 						console.log(result.rows[0].student_name);
 					    var elem=result.rows[0];
-						
+						var name1=elem['student_name'];
 						});
 					});
 					 
 
                 	if (requestBody.result.fulfillment) 
                 	{
-                    speech +=name;
+                    speech +=name1;
                     speech += ' ';
                		}
 
