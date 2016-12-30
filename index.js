@@ -38,8 +38,7 @@ restService.post('/hook', function (req, res) {
 						if(err) return response.send(err);
 						console.log(result.rows[0].student_name);
 					     result.rows[0].student_name;						
-						});
-					  });
+						
 					 
 
                 	if (requestBody.result.fulfillment) 
@@ -53,6 +52,8 @@ restService.post('/hook', function (req, res) {
                 	{
                     speech += 'action: ' + requestBody.result.action;
                 	}
+                	});
+					  });
 
                 }
 
