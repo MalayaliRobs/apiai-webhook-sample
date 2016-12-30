@@ -47,8 +47,18 @@ restService.post('/hook', function (req, res) {
 					    //call `done()` to release the client back to the pool 
 					    done();
 					    console.log(result.rows[0].student_name);
-					     name1=result.rows[0].student_name;
-					     
+					     speech=result.rows[0].student_name;
+					     return res.json({
+					            "speech": speech,
+					            "displayText": speech,
+					            "source": 'apiai-webhook-sample',
+								"data":{
+									"slack": {
+						    				"text": speech,
+											}
+									 }
+								
+					        });
 					    //output: 1 
 					  });
 					});
@@ -67,17 +77,7 @@ restService.post('/hook', function (req, res) {
 
                     console.log('result: ', speech);
 
-					        return res.json({
-					            "speech": speech,
-					            "displayText": speech,
-					            "source": 'apiai-webhook-sample',
-								"data":{
-									"slack": {
-						    				"text": speech,
-											}
-									 }
-								
-					        });
+					        
 
 
 
