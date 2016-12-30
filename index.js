@@ -43,7 +43,7 @@ restService.post('/hook', function (req, res) {
 
                 	if (requestBody.result.fulfillment) 
                 	{
-                    speech +=result.rows[0].student_name;;
+                    speech +=result.rows[0].student_name;
                     speech += ' ';
                     name1='';
                		}
