@@ -16,7 +16,7 @@ var config = {
 };
 //var connString = 'postgres://jiadkawgponomn:803cec759efcbd383bbd2ecd4d02de800ba073a90079b23f5b247a878afe85c1@ec2-54-221-212-48.compute-1.amazonaws.com:5432/dei1e9mld85lk9';
 var pool = new pg.Pool(config);
-
+var name1;
 const restService = express();
 restService.use(bodyParser.json());
 
@@ -26,7 +26,7 @@ restService.post('/hook', function (req, res) {
 
     try {
         var speech = 'empty speech';
-        var name1='';
+
         if (req.body) {
             var requestBody = req.body;
 
