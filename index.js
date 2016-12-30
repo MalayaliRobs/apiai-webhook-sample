@@ -32,27 +32,19 @@ restService.post('/hook', function (req, res) {
 
                 	pg.connect(connString, function(err, client, done) {
 					if(err) response.send("Could not connect to DB: " + err);
-					var search=` SELECT * FROM ajcestudents where student_name ilike '${name}%'`;
+					var search=`SELECT * FROM ajcestudents where student_name ilike '${name}%'`;
 					client.query(search, function(err, result) {
 					   done();
 						if(err) return response.send(err);
 						console.log(result.rows[0].student_name);
-					    //var test=JSON.stringify(result.rows, null, "    ");
-					    //var testp=JSON.parse(test);
-					     name1=result.rows[0].student_name;
-					    /*result1.push(result.rows[0].student_name);
-					    name1=result1.pop();
-        				console.log(result1[0]);
-					    name='';*/
-					 
-						
+					     result.rows[0].student_name;						
 						});
 					  });
 					 
 
                 	if (requestBody.result.fulfillment) 
                 	{
-                    speech +=name1;
+                    speech +=result.rows[0].student_name;;
                     speech += ' ';
                     name1='';
                		}
