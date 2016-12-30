@@ -50,7 +50,7 @@ restService.post('/hook', function (req, res) {
 					      return console.error('error running query', err);
 					    }
 					    console.log(result.rows[0].student_name);
-					     speech+=result.rows[0].student_name;
+					     speech +=result.rows[0].student_name;
 					    //output: 1 
 					  });
 					});
@@ -66,6 +66,19 @@ restService.post('/hook', function (req, res) {
                 	if (requestBody.result.action) 
                 	{
                     speech += 'action: ' + requestBody.result.action;
+                    console.log('result: ', speech);
+
+			        return res.json({
+			            "speech": speech,
+			            "displayText": speech,
+			            "source": 'apiai-webhook-sample',
+						"data":{
+							"slack": {
+				    				"text": speech,
+									}
+							 }
+						
+			        	});
                 	}
 
                 }
@@ -74,19 +87,7 @@ restService.post('/hook', function (req, res) {
             }
         }
 
-        console.log('result: ', speech);
-
-        return res.json({
-            "speech": speech,
-            "displayText": speech,
-            "source": 'apiai-webhook-sample',
-			"data":{
-				"slack": {
-	    				"text": speech,
-						}
-				 }
-			
-        });
+        
 
     } catch (err) {
         console.error("Can't process request", err);
