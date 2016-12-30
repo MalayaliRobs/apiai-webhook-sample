@@ -36,6 +36,7 @@ restService.post('/hook', function (req, res) {
                 if (requestBody.result.action=='search_name')
                 {
                 	var name=requestBody.result.parameters['given-name'];
+                	console.log('Searching:',name);
 					var search=`SELECT student_name FROM ajcestudents where student_name ilike '${name}%'`;
                 	// new pool code
 					 pool.connect(function(err, client, done) {
@@ -44,14 +45,14 @@ restService.post('/hook', function (req, res) {
 					  }
 					  client.query(search, function(err, result) {
 					    //call `done()` to release the client back to the pool 
-					    
+					    done();
 					    console.log(result.rows[0].student_name);
 					     name1=result.rows[0].student_name;
-					     done();
+					     
 					    //output: 1 
 					  });
 					});
-					 
+					
 
                 	if (requestBody.result.fulfillment) 
                 	{
@@ -63,6 +64,23 @@ restService.post('/hook', function (req, res) {
                 	if (requestBody.result.action) 
                 	{
                     speech += 'action: ' + requestBody.result.action;
+
+                    console.log('result: ', speech);
+
+					        return res.json({
+					            "speech": speech,
+					            "displayText": speech,
+					            "source": 'apiai-webhook-sample',
+								"data":{
+									"slack": {
+						    				"text": speech,
+											}
+									 }
+								
+					        });
+
+
+
                 	}
 
                 }
@@ -71,19 +89,7 @@ restService.post('/hook', function (req, res) {
             }
         }
 
-        console.log('result: ', speech);
-
-        return res.json({
-            "speech": speech,
-            "displayText": speech,
-            "source": 'apiai-webhook-sample',
-			"data":{
-				"slack": {
-	    				"text": speech,
-						}
-				 }
-			
-        });
+        
 
     } catch (err) {
         console.error("Can't process request", err);
