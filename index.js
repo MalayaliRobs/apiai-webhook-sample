@@ -34,10 +34,11 @@ restService.post('/hook', function (req, res) {
 					if(err) response.send("Could not connect to DB: " + err);
 					var search=`SELECT student_name FROM ajcestudents where student_name ilike '${name}%'`;
 					client.query(search, function(err, result) {
-					   done();
+					   
 						if(err) return response.send(err);
 						console.log(result.rows[0].student_name);
-					     name1=result.rows[0].student_name;						
+					     name1=result.rows[0].student_name;	
+					     done();					
 						});
 					  });
 					 
