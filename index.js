@@ -47,7 +47,23 @@ restService.post('/hook', function (req, res) {
 					    //call `done()` to release the client back to the pool 
 					    done();
 					    console.log(result.rows[0].student_name);
-					     speech=result.rows[0].student_name;
+					     name1=result.rows[0].student_name;
+
+					     if (requestBody.result.fulfillment) 
+		                	{
+		                    speech +=name1;
+		                    speech += ' ';
+		                    name1='';
+		               		}
+
+		                	if (requestBody.result.action) 
+		                	{
+		                    speech += 'action: ' + requestBody.result.action;
+
+		                    console.log('result: ', speech);
+		                	}
+
+
 					     return res.json({
 					            "speech": speech,
 					            "displayText": speech,
@@ -64,25 +80,7 @@ restService.post('/hook', function (req, res) {
 					});
 					
 
-                	if (requestBody.result.fulfillment) 
-                	{
-                    speech +=name1;
-                    speech += ' ';
-                    name1='';
-               		}
-
-                	if (requestBody.result.action) 
-                	{
-                    speech += 'action: ' + requestBody.result.action;
-
-                    console.log('result: ', speech);
-
-					        
-
-
-
-                	}
-
+                	
                 }
 
                 
