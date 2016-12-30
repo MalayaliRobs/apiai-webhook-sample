@@ -37,9 +37,9 @@ restService.post('/hook', function (req, res) {
 					   done();
 						if(err) return response.send(err);
 						console.log(result.rows[0].student_name);
-					    var test=JSON.stringify(result.rows, null, "    ");
-					    var testp=JSON.parse(test);
-					     name1=testp[0].student_name;
+					    //var test=JSON.stringify(result.rows, null, "    ");
+					    //var testp=JSON.parse(test);
+					     name1=result.rows[0].student_name;
 					    /*result1.push(result.rows[0].student_name);
 					    name1=result1.pop();
         				console.log(result1[0]);
