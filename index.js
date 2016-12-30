@@ -32,18 +32,19 @@ restService.post('/hook', function (req, res) {
 
                 	pg.connect(connString, function(err, client, done) {
 					if(err) response.send("Could not connect to DB: " + err);
-					var search=`SELECT * FROM ajcestudents where student_name ilike '${name}%'`;
+					var search=`SELECT student_name FROM ajcestudents where student_name ilike '${name}%'`;
 					client.query(search, function(err, result) {
 					   done();
 						if(err) return response.send(err);
 						console.log(result.rows[0].student_name);
-					     result.rows[0].student_name;						
-						
+					     name1=result.rows[0].student_name;						
+						});
+					  });
 					 
 
                 	if (requestBody.result.fulfillment) 
                 	{
-                    speech +=result.rows[0].student_name;
+                    speech +=name1;
                     speech += ' ';
                     name1='';
                		}
@@ -52,8 +53,6 @@ restService.post('/hook', function (req, res) {
                 	{
                     speech += 'action: ' + requestBody.result.action;
                 	}
-                	});
-					  });
 
                 }
 
