@@ -5,20 +5,13 @@ const bodyParser = require('body-parser');
 
 const pg = require('pg');
 pg.defaults.ssl = true;
-var config = {
-  user: 'jiadkawgponomn', //env var: PGUSER 
-  database: 'dei1e9mld85lk9', //env var: PGDATABASE 
-  password: '803cec759efcbd383bbd2ecd4d02de800ba073a90079b23f5b247a878afe85c1', //env var: PGPASSWORD 
-  host: 'ec2-54-221-212-48.compute-1.amazonaws.com', // Server hosting the postgres database 
-  port: 5432, //env var: PGPORT 
-  max: 10, // max number of clients in the pool 
-  idleTimeoutMillis: 30000, // how long a client is allowed to remain idle before being closed 
-};
-//var connString = 'postgres://jiadkawgponomn:803cec759efcbd383bbd2ecd4d02de800ba073a90079b23f5b247a878afe85c1@ec2-54-221-212-48.compute-1.amazonaws.com:5432/dei1e9mld85lk9';
-var pool = new pg.Pool(config);
+var connString = 'postgres://jiadkawgponomn:803cec759efcbd383bbd2ecd4d02de800ba073a90079b23f5b247a878afe85c1@ec2-54-221-212-48.compute-1.amazonaws.com:5432/dei1e9mld85lk9';
 
 const restService = express();
 restService.use(bodyParser.json());
+
+var name1='';
+
 
 restService.post('/hook', function (req, res) {
 
@@ -36,24 +29,17 @@ restService.post('/hook', function (req, res) {
                 if (requestBody.result.action=='search_name')
                 {
                 	var name=requestBody.result.parameters['given-name'];
+
+                	pg.connect(connString, function(err, client, done) {
+					if(err) response.send("Could not connect to DB: " + err);
 					var search=`SELECT student_name FROM ajcestudents where student_name ilike '${name}%'`;
-                	// new pool code
-					 pool.connect(function(err, client, done) {
-					  if(err) {
-					    return console.error('error fetching client from pool', err);
-					  }
-					  client.query(search, function(err, result) {
-					    //call `done()` to release the client back to the pool 
-					    done();
-					 
-					    if(err) {
-					      return console.error('error running query', err);
-					    }
-					    console.log(result.rows[0].student_name);
-					    var name1=result.rows[0].student_name;
-					    //output: 1 
+					client.query(search, function(err, result) {
+					   done();
+						if(err) return response.send(err);
+						console.log(result.rows[0].student_name);
+					     name1=result.rows[0].student_name;						
+						});
 					  });
-					});
 					 
 
                 	if (requestBody.result.fulfillment) 
