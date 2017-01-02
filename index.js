@@ -63,7 +63,7 @@ restService.post('/hook', function (req, res) {
 
 		                	if (requestBody.result.action) 
 		                	{
-		                    speech += ': ';
+		                    speech += ' ';
 
 		                    console.log('result: ', speech);
 		                	}
