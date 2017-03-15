@@ -38,7 +38,7 @@ restService.post('/hook', function (req, res) {
                 {
                 	var name=requestBody.result.parameters['given-name'];
                 	console.log('Searching:',name);
-					var search=`SELECT count(*) FROM ajcestudents where student_name ilike '${name}%'`;
+					var search=`SELECT count(*),student_name FROM ajcestudents where student_name ilike '${name}%'`;
 					//var countrows=`SELECT COUNT(*) FROM ajcestudents where student_name ilike '${name}%'`;
                 	// new pool code
 					 pool.connect(function(err, client, done) {
