@@ -50,7 +50,7 @@ restService.post('/hook', function (req, res) {
 					    done();
 					    console.log(result.rows[0].student_name);
 					     name1=result.rows[0].student_name;
-					     while(result.rows[i].student_name);
+					     while(result.rows[i].student_name)
 					     {
 					     	i++;
 
