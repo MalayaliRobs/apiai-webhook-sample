@@ -38,7 +38,7 @@ restService.post('/hook', function (req, res) {
                 {
                 	var name=requestBody.result.parameters['given-name'];
                 	console.log('Searching:',name);
-					var search=`SELECT count(*),student_name FROM ajcestudents where student_name ilike '${name}%'`;
+					var search=`SELECT * FROM ajcestudents where student_name ilike '${name}%'`;
 					//var countrows=`SELECT COUNT(*) FROM ajcestudents where student_name ilike '${name}%'`;
                 	// new pool code
 					 pool.connect(function(err, client, done) {
@@ -49,16 +49,16 @@ restService.post('/hook', function (req, res) {
 					    //call `done()` to release the client back to the pool 
 					    done();
 					    console.log(result.rows[0].student_name);
-					     name1=result.rows[0].count;
+					     name1=result.rows[0].student_name;
 
 					     if (requestBody.result.fulfillment) 
 		                	{
-		                    speech +=name1;
+		                    speech +=name1+''+result.rows.length;
 		                    speech += ' ';
-		                 //   speech +='\n admin no :'+result.rows[0].admission_no;
-		                   // speech += '\n course : '+result.rows[0].course;
-		                   // speech += '\n branch  : '+result.rows[0].branch ;
-		                   // speech += '\n batch   : '+result.rows[0].batch  ;
+		                    speech +='\n admin no :'+result.rows[0].admission_no;
+		                    speech += '\n course : '+result.rows[0].course;
+		                    speech += '\n branch  : '+result.rows[0].branch ;
+		                    speech += '\n batch   : '+result.rows[0].batch  ;
 
 		                    name1='';
 		               		}
