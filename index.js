@@ -27,6 +27,7 @@ restService.post('/hook', function (req, res) {
     try {
         var speech = 'empty speech';
         var name1='';
+        var name2='';
         if (req.body) {
             var requestBody = req.body;
 
@@ -48,11 +49,12 @@ restService.post('/hook', function (req, res) {
 					    done();
 					    console.log(result.rows[0].student_name);
 					     name1=result.rows[0].student_name;
+					     name2=result.rows[1].student_name;
 
 
 					     if (requestBody.result.fulfillment) 
 		                	{
-		                    speech +=name1;
+		                    speech +=name1+name2;
 		                    speech += ' ';
 		                    speech +='\n admin no :'+result.rows[0].admission_no;
 		                    speech += '\n course : '+result.rows[0].course;
