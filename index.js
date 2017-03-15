@@ -48,6 +48,10 @@ restService.post('/hook', function (req, res) {
 					    done();
 					    console.log(result.rows[0].student_name);
 					     name1=result.rows[0].student_name;
+					     if(result.rows[1].student_name)
+					     {
+					     	name1="find row 2";
+					     }
 
 					     if (requestBody.result.fulfillment) 
 		                	{
