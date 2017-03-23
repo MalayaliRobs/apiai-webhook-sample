@@ -50,6 +50,7 @@ restService.post('/hook', function (req, res) {
 					    //call `done()` to release the client back to the pool 
 					    done();
 					    console.log(result.rows[0].student_name);
+					    console.log(result.rows.lengt);
 					     name1=result.rows[0].student_name;
 
 					     if (requestBody.result.fulfillment) 
