@@ -53,7 +53,11 @@ restService.post('/hook', function (req, res) {
 
 					     if (requestBody.result.fulfillment) 
 		                	{
-		                    speech +=name1+''+result.rows.length;
+		                		if(result.rows.length>1)
+		                		{
+		                			
+		                		}
+		                    speech +=name1;
 		                    speech += ' ';
 		                    speech +='\n admin no :'+result.rows[0].admission_no;
 		                    speech += '\n course : '+result.rows[0].course;
