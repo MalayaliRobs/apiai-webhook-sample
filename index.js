@@ -50,7 +50,7 @@ restService.post('/hook', function (req, res) {
 					    //call `done()` to release the client back to the pool 
 					    done();
 					    console.log(result.rows[0].student_name);
-					    console.log(result.rows.lengt);
+					    console.log(result.rows.length);
 					     name1=result.rows[0].student_name;
 
 					     if (requestBody.result.fulfillment) 
@@ -73,7 +73,7 @@ restService.post('/hook', function (req, res) {
 			                    speech += '\n branch  : '+result.rows[0].branch ;
 			                    speech += '\n batch   : '+result.rows[0].batch  ;
 			                    }
-			                    else
+			                    else if if(result.rows.length==0)
 			                    {
 			                    	speech="Sorry we coudnt find that person in AJCE.";
 			                    }
