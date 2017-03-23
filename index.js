@@ -75,7 +75,7 @@ restService.post('/hook', function (req, res) {
 			                    }
 			                    else if if(result.rows.length==0)
 			                    {
-			                    	speech="Sorry we coudnt find that person in AJCE.";
+			                    	speech=" Sorry we coudnt find that person in AJCE.";
 			                    }
 			                    name1='';
 		               		}
