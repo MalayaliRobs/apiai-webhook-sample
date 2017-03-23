@@ -28,6 +28,7 @@ restService.post('/hook', function (req, res) {
         var speech = 'empty speech';
         var name1='';
         var name2='';
+        var count;
         if (req.body) {
             var requestBody = req.body;
 
@@ -55,16 +56,27 @@ restService.post('/hook', function (req, res) {
 		                	{
 		                		if(result.rows.length>1)
 		                		{
-		                			
+		                			speech="Hey we found multiple results for "+name1;
+		                			speech+=".\nWere you searching for :";
+		                			for(count = 0; count < result.rows.length; count++)
+		                			{
+		                				speech+="\n"+result.rows[count].student_name;
+		                			}
 		                		}
-		                    speech +=name1;
-		                    speech += ' ';
-		                    speech +='\n admin no :'+result.rows[0].admission_no;
-		                    speech += '\n course : '+result.rows[0].course;
-		                    speech += '\n branch  : '+result.rows[0].branch ;
-		                    speech += '\n batch   : '+result.rows[0].batch  ;
-
-		                    name1='';
+		                		else if(result.rows.length==1)
+		                		{
+			                    speech +=name1;
+			                    speech += ' ';
+			                    speech +='\n admin no :'+result.rows[0].admission_no;
+			                    speech += '\n course : '+result.rows[0].course;
+			                    speech += '\n branch  : '+result.rows[0].branch ;
+			                    speech += '\n batch   : '+result.rows[0].batch  ;
+			                    }
+			                    else
+			                    {
+			                    	speech="Sorry we coudnt find that person in AJCE.";
+			                    }
+			                    name1='';
 		               		}
 
 		                	if (requestBody.result.action) 
