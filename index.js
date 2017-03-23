@@ -49,14 +49,15 @@ restService.post('/hook', function (req, res) {
 					  client.query(search, function(err, result) {
 					    //call `done()` to release the client back to the pool 
 					    done();
-					    console.log(result.rows[0].student_name);
-					    console.log(result.rows.lengt);
-					     name1=result.rows[0].student_name;
+					    
 
 					     if (requestBody.result.fulfillment) 
 		                	{
 		                		if(result.rows.length>1)
 		                		{
+		                			console.log(result.rows[0].student_name);
+					    			console.log(result.rows.length);
+					     			name1=result.rows[0].student_name;
 		                			speech="Hey we found multiple results for "+name;
 		                			speech+=".\nWere you searching for :";
 		                			for(count = 0; count < result.rows.length; count++)
@@ -66,6 +67,9 @@ restService.post('/hook', function (req, res) {
 		                		}
 		                		else if(result.rows.length==1)
 		                		{
+		                		console.log(result.rows[0].student_name);
+					    		console.log(result.rows.length);
+					     		name1=result.rows[0].student_name;
 			                    speech +=name1;
 			                    speech += ' ';
 			                    speech +='\n admin no :'+result.rows[0].admission_no;
