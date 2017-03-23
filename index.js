@@ -56,11 +56,11 @@ restService.post('/hook', function (req, res) {
 		                	{
 		                		if(result.rows.length>1)
 		                		{
-		                			speech="Hey we found multiple results for "+name1;
+		                			speech="Hey we found multiple results for "+name;
 		                			speech+=".\nWere you searching for :";
 		                			for(count = 0; count < result.rows.length; count++)
 		                			{
-		                				speech+="\n"+result.rows[count].student_name;
+		                				speech+="\n"+"* "+result.rows[count].student_name;
 		                			}
 		                		}
 		                		else if(result.rows.length==1)
