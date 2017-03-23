@@ -22,7 +22,7 @@ restService.use(bodyParser.json());
 
 restService.post('/hook', function (req, res) {
 
-    console.log('hook request ');
+    console.log('hook request');
 
     try {
         var speech = 'empty speech';
