@@ -33,7 +33,7 @@ restService.post('/hook', function (req, res) {
             var requestBody = req.body;
 
             if (requestBody.result) {
-                speech = '';
+                speech = ' ';
 
                 if (requestBody.result.action=='search_name')
                 {
