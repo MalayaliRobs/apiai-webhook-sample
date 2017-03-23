@@ -37,7 +37,8 @@ restService.post('/hook', function (req, res) {
 
                 if (requestBody.result.action=='search_name')
                 {
-                	var name=requestBody.result.parameters['given-name'];
+                	var name=requestBody.result.parameters.given-name.length;
+                	console.log(name);
                 	console.log('Searching:',name);
 					var search=`SELECT * FROM ajcestudents where student_name ilike '${name}%'`;
 					//var countrows=`SELECT COUNT(*) FROM ajcestudents where student_name ilike '${name}%'`;
@@ -79,7 +80,7 @@ restService.post('/hook', function (req, res) {
 			                    }
 			                    else
 			                    {
-			                    	speech="Sorry we coudnt find that person in AJCE.";
+			                    	speech="Sorry we coudn't find that person in AJCE.";
 			                    }
 			                    name1='';
 		               		}
