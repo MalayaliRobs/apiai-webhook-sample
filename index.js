@@ -37,10 +37,10 @@ restService.post('/hook', function (req, res) {
 
                 if (requestBody.result.action=='search_name')
                 {
-                	var name=requestBody.result.parameters.given-name.length;
+                	var name=requestBody.result.parameters.['given-name'].length;
                 	console.log(name);
                 	console.log('Searching:',name);
-					var search=`SELECT * FROM ajcestudents where student_name ilike '${name}%'`;
+/*				var search=`SELECT * FROM ajcestudents where student_name ilike '${name}%'`;
 					//var countrows=`SELECT COUNT(*) FROM ajcestudents where student_name ilike '${name}%'`;
                 	// new pool code
 					 pool.connect(function(err, client, done) {
@@ -110,7 +110,7 @@ restService.post('/hook', function (req, res) {
 					
 
                 	
-                }
+                } */
 
                 
             }
