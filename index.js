@@ -43,12 +43,13 @@ restService.post('/hook', function (req, res) {
                 	while(i<len)
                 	{
                 		 name+=requestBody.result.parameters.givenname[i];
-                		 name+=' ';
+                		 if(!(i==(len-1)))
+                		 	name+=' ';
                 		 i++;
                 	}
                 	console.log(name);
                 	console.log('Searching:',name);
-				 	var search=`SELECT * FROM ajcestudents where student_name ilike '${name}'`;
+				 	var search=`SELECT * FROM ajcestudents where student_name ilike '${name}%'`;
 					//var countrows=`SELECT COUNT(*) FROM ajcestudents where student_name ilike '${name}%'`;
                 	// new pool code
 					 pool.connect(function(err, client, done) {
