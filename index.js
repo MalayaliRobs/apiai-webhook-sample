@@ -43,7 +43,7 @@ restService.post('/hook', function (req, res) {
                 	while(i<len)
                 	{
                 		 name+=requestBody.result.parameters.givenname[i];
-                		 name+=" ";
+                		 name+=' ';
                 		 i++;
                 	}
                 	console.log(name);
