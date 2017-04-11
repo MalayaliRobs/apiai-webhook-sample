@@ -120,7 +120,61 @@ restService.post('/hook', function (req, res) {
                 else if (requestBody.result.action=='admin_no')
                 {
                 	var adminno=requestBody.result.parameters['adminno'];
-                	console.log(adminno);
+                	var search=`SELECT * FROM ajcestudents where admission_no ilike '${adminno}'`;
+                	 pool.connect(function(err, client, done) {
+					  if(err) {
+					    return console.error('error fetching client from pool', err);
+					  }
+					  client.query(search, function(err, result) {
+					    //call `done()` to release the client back to the pool 
+					    done();
+					    
+
+					     if (requestBody.result.fulfillment) 
+		                	{
+		                		
+		                		if(result.rows.length==1)
+		                		{
+		                		console.log(result.rows[0].student_name);
+					    		console.log(result.rows.length);
+					     		name1=result.rows[0].student_name;
+			                    speech +=name1;
+			                    speech += ' ';
+			                    speech +='\n admin no :'+result.rows[0].admission_no;
+			                    speech += '\n course : '+result.rows[0].course;
+			                    speech += '\n branch  : '+result.rows[0].branch ;
+			                    speech += '\n batch   : '+result.rows[0].batch  ;
+			                    }
+			                    else
+			                    {
+			                    	speech="Sorry we coudn't find that person in AJCE.";
+			                    }
+			                    name1='';
+		               		}
+
+		                	if (requestBody.result.action) 
+		                	{
+		                    speech += ' ';
+
+		                    console.log('result: ', speech);
+		                	}
+
+
+					     return res.json({
+					            "speech": speech,
+					            "displayText": speech,
+					            "source": 'apiai-webhook-sample',
+								"data":{
+									"slack": {
+						    				"text": speech,
+											}
+									 }
+								
+					        });
+					    //output: 1 
+					  });
+					});  
+                	//end of if
                 }
                 
             }
