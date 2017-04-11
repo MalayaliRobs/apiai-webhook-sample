@@ -115,12 +115,13 @@ restService.post('/hook', function (req, res) {
 					        });
 					    //output: 1 
 					  });
-					});
-					
-
-                	
+					});        	
                 } 
-
+                else if (requestBody.result.action=='admin_no')
+                {
+                	var adminno=requestBody.result.parameters.['adminno'];
+                	console.log(adminno);
+                }
                 
             }
         }
